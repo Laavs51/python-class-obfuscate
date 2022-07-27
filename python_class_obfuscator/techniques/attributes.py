@@ -3,7 +3,7 @@
 """
 from ast import *
 
-from utils import Obfuscator
+from .utils import Obfuscator
 
 
 class AttrObfuscator(Obfuscator):

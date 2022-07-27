@@ -3,10 +3,12 @@
 """
 import ast
 
-from attr_writer import AttrObfuscator
-from class_to_dynamic_type import ClassObfuscator
-from lexical import LexicalNamespaceObfuscator
-from string_as_predicate import StringObfuscator
+from .attributes import AttrObfuscator
+from .classes import ClassObfuscator
+from .constants import StringObfuscator
+from .lexical import LexicalNamespaceObfuscator
+
+ALGORITHM_STEPS = [ClassObfuscator, AttrObfuscator, StringObfuscator, LexicalNamespaceObfuscator]
 
 
 def obfuscate(code):
@@ -19,7 +21,7 @@ def obfuscate(code):
     """
     tree = ast.parse(code)
 
-    for technique in [ClassObfuscator, AttrObfuscator, StringObfuscator, LexicalNamespaceObfuscator]:
+    for technique in ALGORITHM_STEPS:
         tree = technique().obfuscate(tree)
 
         # После преобразований положения узлов могут сбиваться или отсутствовать.

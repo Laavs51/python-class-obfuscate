@@ -1,9 +1,9 @@
 """
 Модуль для лексической обфускации кода
 """
-import ast
+from ast import *
 
-from utils import NamespaceObfuscator
+from .utils import NamespaceObfuscator
 
 
 class LexicalNamespaceObfuscator(NamespaceObfuscator):
@@ -11,7 +11,7 @@ class LexicalNamespaceObfuscator(NamespaceObfuscator):
 
     def visit_Expr(self, node):
         """ Удаляем комментарии """
-        if isinstance(node.value, ast.Constant):
+        if isinstance(node.value, Constant):
             return None
         return self.generic_visit(node)
 
@@ -48,7 +48,7 @@ class LexicalNamespaceObfuscator(NamespaceObfuscator):
         name = node.name
         node.name = self.alt_name(name)
 
-        for arg in node.args.args:
-            arg.arg = self.alt_name(arg.arg)
+        for argument in node.args.args:
+            argument.arg = self.alt_name(argument.arg)
 
         return self.generic_visit(node)

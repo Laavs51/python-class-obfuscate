@@ -1,6 +1,6 @@
 from ast import *
 
-from utils import NamespaceObfuscator
+from .utils import NamespaceObfuscator
 
 
 class ClassObfuscator(NamespaceObfuscator):

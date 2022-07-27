@@ -34,4 +34,4 @@ class ProjectItemLocation:
 
 
 if __name__ == '__main__':
-    print(ProjectItemLocation().child('test'))
+    print(ProjectItemLocation().child('tests'))
